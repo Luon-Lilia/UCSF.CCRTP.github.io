@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2026 Cohort Research Posters · CCRTP · UCSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="ucsf-bar">
+  <div class="inner">
+    <a href="https://www.ucsf.edu">University of California San Francisco</a>
+    <a href="https://giving.ucsf.edu" class="give-btn">Give to UCSF</a>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <div class="inner">
+    <a class="logo" href="index.html">CCRTP &amp; ACS SEEDlings</a>
+    <div class="nav-links">
+      <a href="index.html">About</a>
+      <a href="apply.html">Apply</a>
+      <a href="posters.html">2026 Cohort</a>
+      <a href="team.html">Team</a>
+    </div>
+    <a href="apply.html" class="nav-apply">Apply for 2027</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="inner">
+    <div class="breadcrumb"><a href="index.html">CCRTP</a><span>›</span> 2026 Cohort</div>
+    <h1>2026 Cohort Research Posters</h1>
+    <p class="sub">Every CCRTP intern presents their research at the end-of-summer symposium. Browse their work below.</p>
+  </div>
+</div>
+
+<div class="page-body">
+  <main class="main-col">
+
+    <section>
+      <p>The 2026 pilot cohort marks the inaugural summer of CCRTP at UCSF. Interns spent eight weeks embedded in active biomedical research labs, then presented their findings at the CCRTP Research Symposium.</p>
+    </section>
+
+    <section>
+      <div class="cohort-tabs">
+        <button class="tab-btn active" data-cohort="2026">2026 Cohort (Pilot)</button>
+      </div>
+
+      <!-- 2026 COHORT -->
+      <div class="cohort-section visible" id="cohort-2026">
+        <div class="poster-grid">
+          <!--
+            ═══════════════════════════════════════════════════
+            POSTER CARD: duplicate for each intern.
+            Fill in data-* attributes. Add img tag in .poster-thumb.
+            Place files in assets/posters/
+            ═══════════════════════════════════════════════════
+          -->
+          <div class="poster-card"
+               data-name="[Intern Name]"
+               data-project="[Project Title]"
+               data-mentor="[Mentor] · [Lab]"
+               data-lab="[Lab] · UCSF"
+               data-abstract="[2–4 sentences: the question, methods, and key findings.]"
+               data-pdf="">
+            <div class="poster-thumb">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;pointer-events:none;">
+                <span style="font-size:2rem;">🔬</span>
+                <span style="font-size:.78rem;">Hover to add poster image</span>
+              </div>
+            </div>
+            <div class="poster-info">
+              <h3>[Intern Name]</h3>
+              <div class="mentor">[Mentor] · [Lab]</div>
+              <div class="topic">[Project Title]</div>
+              <a href="#" class="poster-link view-poster">View poster</a>
+            </div>
+          </div>
+          <!-- Add more poster cards here -->
+        </div>
+      </div>
+
+
+    </section>
+
+    <section>
+      <h2>How to add a poster</h2>
+      <ol style="font-size:.9rem;">
+        <li>Put the thumbnail image (JPG or PNG) in <code>assets/posters/</code></li>
+        <li>Put the PDF in <code>assets/posters/</code></li>
+        <li>In <code>posters.html</code>, find <code>id="cohort-2026"</code> and duplicate the poster card block</li>
+        <li>Fill in the intern's name, project, mentor, abstract, and file paths in the <code>data-*</code> attributes</li>
+        <li>Add <code>&lt;img src="assets/posters/filename-thumb.jpg" alt="Poster"&gt;</code> inside <code>.poster-thumb</code></li>
+      </ol>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-nav">
+      <h4>Cohort years</h4>
+      <a href="#">2026 Cohort (Pilot)</a>
+    </div>
+    <div class="sidebar-box" style="margin-top:1.25rem;">
+      <h4>About the symposium</h4>
+      <div class="sidebar-box-body">
+        <p>At the end of each summer, CCRTP interns present their research as posters at a formal symposium attended by faculty, mentors, and fellow interns.</p>
+      </div>
+    </div>
+    <div class="sidebar-box" style="margin-top:1.25rem;">
+      <h4>Interested in 2027?</h4>
+      <div class="sidebar-box-body">
+        <p><a href="apply.html">Applications for Summer 2027</a> will open soon.</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="posterModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h2 id="modal-name" style="font-size:1.15rem;margin:0;"></h2>
+        <div id="modal-mentor" style="font-size:.85rem;color:var(--blue-gray);margin-top:.2rem;"></div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modal-thumb-wrap"></div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <h3 id="modal-project" style="margin-bottom:.65rem;font-size:1.1rem;"></h3>
+      <p id="modal-abstract" style="font-size:.9rem;color:var(--body-text);"></p>
+      <div style="margin-top:1.25rem;">
+        <a id="modal-pdf-link" href="#" class="btn btn-primary" target="_blank" style="display:none;">Download PDF</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">CCRTP &amp; ACS SEEDlings · UCSF</div>
+        <div class="footer-sub">Division of Graduate Education and Postdoctoral Affairs<br>University of California, San Francisco</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a><a href="apply.html">Apply</a>
+        <a href="posters.html">2026 Cohort</a><a href="team.html">Team</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 The Regents of the University of California. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function switchTab(year) {
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.toggle('active', b.dataset.cohort === year); });
+    document.querySelectorAll('.cohort-section').forEach(s => { s.classList.toggle('visible', s.id === 'cohort-' + year); });
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.cohort));
+  });
+  const modal = document.getElementById('posterModal');
+  document.querySelectorAll('.view-poster').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const card = link.closest('.poster-card');
+      document.getElementById('modal-name').textContent = card.dataset.name || '';
+      document.getElementById('modal-mentor').textContent = card.dataset.mentor || '';
+      document.getElementById('modal-project').textContent = card.dataset.project || '';
+      document.getElementById('modal-abstract').textContent = card.dataset.abstract || 'Abstract coming soon.';
+      const metaEl = document.getElementById('modal-meta'); metaEl.innerHTML = '';
+      if (card.dataset.lab) { const t = document.createElement('span'); t.className='meta-tag'; t.textContent=card.dataset.lab; metaEl.appendChild(t); }
+      const thumbWrap = document.getElementById('modal-thumb-wrap'); thumbWrap.innerHTML = '';
+      const existingImg = card.querySelector('.poster-thumb img');
+      if (existingImg) { const img = document.createElement('img'); img.src = existingImg.src; img.className = 'modal-poster-img'; thumbWrap.appendChild(img); }
+      const pdfLink = document.getElementById('modal-pdf-link');
+      if (card.dataset.pdf) { pdfLink.href = card.dataset.pdf; pdfLink.style.display='inline-block'; } else { pdfLink.style.display='none'; }
+      modal.classList.add('open'); document.body.style.overflow = 'hidden';
+    });
+  });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+  initPosterDrops();
+</script>
+</body>
+</html>

@@ -1,0 +1,809 @@
+/* ═══════════════════════════════════════════════════════════════
+   CCRTP · UCSF Stylesheet
+   Tokens sourced directly from the UCSF CSS variable sheet.
+   Body: Helvetica Neue (UCSF main-font stack).
+   Headings: Garamond/EB Garamond (UCSF secondary-font stack).
+   Colors: exact UCSF named tokens a1-navy, a2-blue, a3-cta-blue,
+   i3-blue-gray, j3-cool-gray, i5-gray, i6-gray, k3-gray.
+   Layout: left-aligned editorial grid with content+sidebar,
+   matching graduate.ucsf.edu structure.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── UCSF DESIGN TOKENS (exact from source) ───────────────── */
+:root {
+  /* Blues & navy from UCSF token sheet */
+  --a1-navy:     #052049;   /* primary brand navy */
+  --a2-blue:     #0F388A;   /* secondary blue nav underlines, headings */
+  --a3-cta-blue: #006BE9;   /* CTA / interactive blue links, buttons */
+  --i3-blue-gray:#506380;   /* body secondary text, labels */
+
+  /* Grays from UCSF token sheet */
+  --j3-cool-gray:#B4B9BF;   /* borders, muted elements */
+  --k3-gray:     #D1D3D3;   /* dividers */
+  --i5-gray:     #E6E9ED;   /* card borders, light dividers */
+  --i6-gray:     #F2F3F4;   /* page/section backgrounds */
+  --j6-gray:     #F8F8F9;   /* subtler alternate bg */
+
+  /* Neutrals */
+  --black:       #000000;
+  --white:       #FFFFFF;
+  --body-text:   #21272A;   /* j1-gray UCSF body copy color */
+
+  /* Semantic aliases for readability */
+  --navy:        var(--a1-navy);
+  --link:        var(--a3-cta-blue);
+  --link-hover:  var(--a2-blue);
+  --gray-border: var(--i5-gray);
+  --gray-bg:     var(--i6-gray);
+  --muted:       var(--i3-blue-gray);
+
+  /* Typography UCSF font stacks */
+  /* Headings: GranjonLTW01-Roman = UCSF secondary-font. EB Garamond is the
+     closest open-source substitute and renders at the same weight/style. */
+  --font-display: 'EB Garamond', 'GranjonLTW01-Roman', Garamond, 'Times New Roman', serif;
+  /* Body: HelveticaNeueLTW-Roman = UCSF main-font. Falls back identically. */
+  --font-body:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Heading scale from UCSF token sheet */
+  --h1-size: 2.438rem;
+  --h2-size: 2.125rem;
+  --h3-size: 1.25rem;
+  --h4-size: 1rem;
+
+  /* Layout */
+  --max-w:   1140px;
+  --nav-h:   56px;
+  --radius:  3px;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--body-text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+
+/* Links UCSF uses a3-cta-blue for interactive elements */
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+p { max-width: 72ch; line-height: 1.65; }
+ul, ol { padding-left: 1.4rem; }
+li { margin-bottom: .3rem; line-height: 1.55; }
+
+/* ─── TYPOGRAPHY ────────────────────────────────────────────── */
+/* UCSF headings: GranjonLTW01-Roman (secondary-font), extra-light weight,
+   0.5px letter-spacing, 1.2 line-height matched below */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 300;           /* UCSF: font-weight-extra-light on headings */
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  color: var(--navy);
+}
+h1 { font-size: clamp(1.75rem, 4vw, var(--h1-size)); margin-bottom: .9rem; }
+h2 { font-size: clamp(1.3rem, 2.5vw, var(--h2-size)); margin-bottom: .75rem; }
+h3 { font-size: var(--h3-size); margin-bottom: .5rem; }
+
+/* h4 and smaller: body font, bold UCSF uses heading-sm-font-family (secondary-font)
+   but at this scale we stay in the sans for legibility */
+h4 {
+  font-size: var(--h4-size);
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: .4rem;
+  letter-spacing: 0;
+}
+strong { font-weight: 700; }
+small  { font-size: .85rem; }
+code   { font-family: monospace; font-size: .9em; background: var(--gray-bg); padding: .1em .35em; border-radius: 2px; }
+
+/* ─── UCSF TOP BAR ──────────────────────────────────────────── */
+.ucsf-bar {
+  background: var(--navy);
+  font-size: .8rem;
+  padding: .45rem 0;
+}
+.ucsf-bar .inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ucsf-bar a {
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  font-family: var(--font-body);
+}
+.ucsf-bar a:hover { color: var(--white); text-decoration: underline; }
+.give-btn {
+  background: var(--a3-cta-blue);
+  color: var(--white) !important;
+  padding: .25rem .85rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: .78rem;
+  text-decoration: none !important;
+  transition: background .12s;
+}
+.give-btn:hover { background: var(--a2-blue) !important; }
+
+/* ─── SITE NAV ──────────────────────────────────────────────── */
+/* Matches graduate.ucsf.edu: white bg, bottom border, underline-on-hover active */
+.site-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--i5-gray);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-nav .inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+}
+.site-nav .logo {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--navy);
+  text-decoration: none;
+  margin-right: 2rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.site-nav .logo:hover { text-decoration: none; }
+.nav-links {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  flex: 1;
+}
+.nav-links a {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: .875rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: border-color .12s, color .12s;
+}
+.nav-links a:hover {
+  border-bottom-color: var(--a2-blue);
+  color: var(--a2-blue);
+  text-decoration: none;
+}
+.nav-links a.active {
+  border-bottom-color: var(--navy);
+  font-weight: 700;
+}
+/* APPLY button navy block, uppercase, matches UCSF "► APPLY" style */
+.nav-apply {
+  margin-left: auto;
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: .5rem 1.2rem !important;
+  border-radius: var(--radius);
+  font-weight: 700 !important;
+  font-size: .8rem !important;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  align-self: center;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: background .12s;
+  flex-shrink: 0;
+}
+.nav-apply:hover { background: var(--a3-cta-blue) !important; text-decoration: none !important; }
+
+/* ─── PAGE HEADER ───────────────────────────────────────────── */
+/* Navy band with breadcrumb + h1 + subtitle matches UCSF SRTP page structure.
+   No decorative shapes, no gradients. Just the navy field and type. */
+.page-header {
+  background: var(--navy);
+  padding: 2.5rem 0 3rem;
+}
+.page-header .inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.page-header .breadcrumb {
+  font-size: .78rem;
+  font-family: var(--font-body);
+  color: rgba(255,255,255,.55);
+  margin-bottom: .65rem;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  flex-wrap: wrap;
+}
+.page-header .breadcrumb a {
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+}
+.page-header .breadcrumb a:hover { color: var(--white); text-decoration: underline; }
+.page-header h1 {
+  color: var(--white);
+  font-size: clamp(1.5rem, 4vw, var(--h1-size));
+  font-weight: 300;           /* matches UCSF heading-font-weight: extra-light */
+  letter-spacing: 0.5px;
+  max-width: 780px;
+  margin: 0;
+}
+.page-header .sub {
+  color: rgba(255,255,255,.72);
+  font-size: .975rem;
+  font-family: var(--font-body);
+  line-height: 1.55;
+  margin-top: .85rem;
+  max-width: 640px;
+}
+
+/* ─── LAYOUT ────────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+/* Two-column content+sidebar layout matches UCSF academic pages */
+.page-body {
+  display: grid;
+  grid-template-columns: 1fr 272px;
+  gap: 3.5rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  align-items: start;
+}
+.main-col > section + section {
+  border-top: 1px solid var(--i5-gray);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+/* Sidebar sticky matches UCSF sidebar behavior */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+
+/* ─── SIDEBAR COMPONENTS ────────────────────────────────────── */
+/* UCSF "► APPLY" sidebar button exact style from SRTP page */
+.sidebar-apply {
+  display: block;
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+  padding: .85rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+  transition: background .12s;
+}
+.sidebar-apply::before { content: '► '; }
+.sidebar-apply:hover { background: var(--a3-cta-blue); text-decoration: none; color: var(--white); }
+
+.sidebar-nav {
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.sidebar-nav h4 {
+  background: var(--i6-gray);
+  padding: .6rem 1rem;
+  font-size: .82rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--i5-gray);
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--navy);
+}
+.sidebar-nav a {
+  display: block;
+  padding: .5rem 1rem;
+  font-size: .85rem;
+  font-family: var(--font-body);
+  color: var(--link);
+  border-bottom: 1px solid var(--i5-gray);
+  text-decoration: none;
+}
+.sidebar-nav a:last-child { border-bottom: none; }
+.sidebar-nav a:hover { background: var(--i6-gray); text-decoration: underline; }
+
+.sidebar-box {
+  margin-top: 1.25rem;
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.sidebar-box h4 {
+  background: var(--i6-gray);
+  padding: .6rem 1rem;
+  font-size: .82rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  border-bottom: 1px solid var(--i5-gray);
+  margin: 0;
+  color: var(--navy);
+}
+.sidebar-box-body {
+  padding: .9rem 1rem;
+  font-size: .875rem;
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+.sidebar-box-body p + p { margin-top: .6rem; }
+.sidebar-card {
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.sidebar-card + .sidebar-card { margin-top: 1.25rem; }
+.sidebar-card-head {
+  background: var(--i6-gray);
+  border-bottom: 1px solid var(--i5-gray);
+  padding: .6rem 1rem;
+  font-size: .82rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  color: var(--navy);
+}
+.sidebar-card-body {
+  padding: .9rem 1rem;
+  font-size: .875rem;
+  line-height: 1.55;
+}
+
+/* ─── DATES BLOCK ───────────────────────────────────────────── */
+/* Matches the bold-label style on UCSF SRTP page */
+.dates-block {
+  background: var(--i6-gray);
+  border-left: 4px solid var(--navy);
+  padding: 1.1rem 1.4rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .95rem;
+  line-height: 1.65;
+}
+.dates-block p + p { margin-top: .35rem; }
+
+/* ─── CARD GRID ─────────────────────────────────────────────── */
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+}
+.card h3 {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0;
+  margin-bottom: .35rem;
+}
+.card p { font-size: .875rem; color: var(--body-text); max-width: none; }
+/* Top-border accent using UCSF a2-blue not a gradient, just a rule */
+.card-accent { border-top: 3px solid var(--a2-blue); }
+
+/* ─── POSTER GALLERY ────────────────────────────────────────── */
+.poster-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+.poster-card {
+  background: var(--white);
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow .15s;
+}
+.poster-card:hover { box-shadow: 0 2px 10px rgba(5,32,73,.1); }
+.poster-thumb {
+  width: 100%; aspect-ratio: 3/4;
+  background: var(--i6-gray);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--j3-cool-gray); font-size: .82rem;
+  text-align: center; padding: 1rem;
+  position: relative; overflow: hidden;
+  font-family: var(--font-body);
+}
+.poster-thumb img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.poster-info { padding: 1rem; }
+.poster-info h3 {
+  font-size: .9rem; font-family: var(--font-body);
+  font-weight: 700; margin-bottom: .2rem; letter-spacing: 0;
+}
+.poster-info .mentor { font-size: .78rem; color: var(--muted); margin-bottom: .5rem; }
+.poster-info .topic { font-size: .83rem; margin-bottom: .7rem; }
+.poster-link {
+  font-size: .83rem; color: var(--link); font-weight: 700;
+  text-decoration: none; border-bottom: 1px solid var(--link);
+  padding-bottom: .05rem;
+}
+.poster-link:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); text-decoration: none; }
+
+/* ─── COHORT TABS ───────────────────────────────────────────── */
+.cohort-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.tab-btn {
+  padding: .38rem .95rem;
+  border: 1px solid var(--j3-cool-gray);
+  background: var(--white);
+  font-size: .85rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background .12s, border-color .12s, color .12s;
+}
+.tab-btn:hover { border-color: var(--a2-blue); color: var(--a2-blue); }
+.tab-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.cohort-section { display: none; }
+.cohort-section.visible { display: block; }
+
+/* ─── TEAM CARDS ────────────────────────────────────────────── */
+.team-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.team-photo {
+  width: 100%; aspect-ratio: 1;
+  background: var(--i6-gray);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.25rem; color: var(--j3-cool-gray);
+  position: relative; overflow: hidden;
+}
+.team-photo img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.team-photo-drop {
+  position: absolute; inset: 0;
+  background: rgba(5,32,73,.52);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .15s;
+  font-size: .72rem; color: var(--white); font-weight: 700;
+  cursor: pointer; font-family: var(--font-body); text-align: center; padding: .5rem;
+}
+.team-card:hover .team-photo-drop { opacity: 1; }
+.team-info { padding: .9rem; }
+.team-info h3 {
+  font-size: .875rem; font-family: var(--font-body);
+  font-weight: 700; margin-bottom: .12rem; letter-spacing: 0; color: var(--navy);
+}
+.team-info .role { font-size: .78rem; color: var(--muted); margin-bottom: .35rem; }
+.team-info .bio { font-size: .8rem; color: var(--body-text); line-height: 1.5; max-width: none; }
+
+/* ─── LEAD CARDS (founders / faculty) ───────────────────────── */
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.lead-card {
+  background: var(--white);
+  border: 1px solid var(--i5-gray);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  display: flex; gap: 1.1rem; align-items: flex-start;
+}
+.lead-photo {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--i5-gray);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; flex-shrink: 0; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.lead-photo img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.lead-photo-drop {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(5,32,73,.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .15s;
+  font-size: .58rem; font-weight: 700; color: white; text-align: center; padding: .3rem;
+  font-family: var(--font-body);
+}
+.lead-card:hover .lead-photo-drop { opacity: 1; }
+.lead-info h3 {
+  font-size: .95rem; font-family: var(--font-body);
+  font-weight: 700; color: var(--navy); letter-spacing: 0; margin-bottom: .12rem;
+}
+.lead-info .role { font-size: .78rem; color: var(--muted); margin-bottom: .55rem; line-height: 1.4; }
+.lead-info .bio { font-size: .85rem; line-height: 1.55; max-width: none; }
+.lead-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .65rem; }
+.lead-link { font-size: .78rem; color: var(--link); text-decoration: none; }
+.lead-link:hover { text-decoration: underline; color: var(--link-hover); }
+
+/* ─── DRAG-DROP ZONE ────────────────────────────────────────── */
+.drop-zone {
+  border: 2px dashed var(--j3-cool-gray);
+  border-radius: var(--radius);
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  background: var(--i6-gray);
+  cursor: pointer;
+  transition: background .12s, border-color .12s;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  background: #E8F2FB;
+  border-color: var(--a3-cta-blue);
+}
+.drop-icon { font-size: 1.6rem; margin-bottom: .5rem; color: var(--j3-cool-gray); }
+.drop-label { font-size: .875rem; color: var(--muted); font-family: var(--font-body); }
+.drop-label strong { color: var(--navy); }
+.drop-hint { font-size: .76rem; color: var(--j3-cool-gray); margin-top: .3rem; }
+.file-list { margin-top: .9rem; text-align: left; }
+.file-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--white); border: 1px solid var(--i5-gray);
+  border-radius: var(--radius); padding: .38rem .7rem;
+  margin-bottom: .3rem; font-size: .82rem; font-family: var(--font-body);
+}
+.file-remove { background: none; border: none; color: var(--j3-cool-gray); cursor: pointer; }
+.file-remove:hover { color: var(--navy); }
+
+/* ─── ADD MEMBER PLACEHOLDER ────────────────────────────────── */
+.add-member-card {
+  background: var(--white); border: 2px dashed var(--j3-cool-gray);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .4rem; min-height: 190px; cursor: pointer;
+  transition: background .12s, border-color .12s, color .12s;
+  color: var(--j3-cool-gray); font-size: .85rem;
+  font-weight: 600; text-align: center; padding: 1rem;
+  font-family: var(--font-body);
+}
+.add-member-card:hover { background: var(--i6-gray); border-color: var(--a3-cta-blue); color: var(--a3-cta-blue); }
+.add-member-card .plus { font-size: 1.4rem; }
+
+/* ─── FAQ ────────────────────────────────────────────────────── */
+.faq-item { border-top: 1px solid var(--i5-gray); padding: .9rem 0; }
+.faq-item:last-child { border-bottom: 1px solid var(--i5-gray); }
+.faq-q {
+  font-weight: 700; cursor: pointer;
+  display: flex; justify-content: space-between; gap: 1rem;
+  font-size: .9rem; font-family: var(--font-body);
+}
+.faq-a { margin-top: .6rem; font-size: .875rem; display: none; line-height: 1.6; }
+.faq-item.open .faq-a { display: block; }
+.faq-toggle { color: var(--a3-cta-blue); flex-shrink: 0; font-size: 1.05rem; }
+
+/* ─── TIMELINE ──────────────────────────────────────────────── */
+.timeline { position: relative; padding-left: 1.6rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+  width: 2px; background: var(--i5-gray);
+}
+.tl-item { position: relative; padding-bottom: 1.35rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -2rem; top: .28rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--navy); border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--navy);
+}
+.tl-date { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-family: var(--font-body); }
+.tl-title { font-weight: 700; font-size: .875rem; font-family: var(--font-body); }
+.tl-desc { font-size: .82rem; color: var(--muted); }
+
+/* ─── MODAL ─────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(5,32,73,.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity .18s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--white); border-radius: var(--radius);
+  max-width: 620px; width: 100%; max-height: 90vh; overflow-y: auto;
+  transform: translateY(10px); transition: transform .18s;
+}
+.modal-overlay.open .modal-box { transform: none; }
+.modal-header {
+  padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--i5-gray);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+}
+.modal-body { padding: 1.4rem 1.5rem; }
+.modal-close { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--j3-cool-gray); }
+.modal-close:hover { color: var(--navy); }
+.modal-poster-img { width: 100%; border-radius: var(--radius); margin-bottom: 1.1rem; border: 1px solid var(--i5-gray); }
+.modal-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .65rem; }
+.meta-tag {
+  font-size: .72rem; padding: .15rem .5rem;
+  background: var(--i6-gray); border-radius: var(--radius);
+  color: var(--muted); font-weight: 700; font-family: var(--font-body);
+}
+
+/* ─── BUTTONS ───────────────────────────────────────────────── */
+.btn {
+  display: inline-block; padding: .55rem 1.3rem;
+  border-radius: var(--radius); font-size: .875rem;
+  font-weight: 700; text-decoration: none; cursor: pointer;
+  border: none; font-family: var(--font-body); letter-spacing: .02em;
+  transition: background .12s, color .12s;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: var(--a3-cta-blue); color: var(--white); }
+.btn-blue { background: var(--a3-cta-blue); color: var(--white); }
+.btn-blue:hover { background: var(--a2-blue); color: var(--white); }
+.btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: var(--white); }
+
+/* ─── PARTNER TAGS ───────────────────────────────────────────── */
+.partner-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.1rem; }
+.partner-tag {
+  background: var(--white); border: 1px solid var(--i5-gray);
+  border-radius: var(--radius); padding: .38rem .85rem;
+  font-size: .82rem; font-weight: 600; font-family: var(--font-body); color: var(--navy);
+}
+
+/* ─── COLLAB GRID ────────────────────────────────────────────── */
+.collab-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: .85rem; margin-top: 1.1rem;
+}
+.collab-item {
+  background: var(--white); border: 1px solid var(--i5-gray);
+  border-radius: var(--radius); padding: .9rem 1rem;
+}
+.collab-item strong { display: block; font-size: .875rem; color: var(--navy); margin-bottom: .2rem; font-family: var(--font-body); }
+.collab-item span { font-size: .8rem; color: var(--muted); line-height: 1.45; }
+
+/* ─── GOAL LIST ──────────────────────────────────────────────── */
+.goal-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; margin-top: 1.1rem; }
+.goal-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: .95rem; }
+/* Garamond numerals this is where the display font earns its place */
+.goal-num {
+  font-family: var(--font-display);
+  font-size: 1.75rem; font-weight: 300;
+  color: var(--a2-blue); flex-shrink: 0;
+  line-height: 1; margin-top: .05rem; width: 1.75rem;
+}
+
+/* ─── TWO-COLUMN PROGRAM BLOCKS ──────────────────────────────── */
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start;
+}
+.program-block {
+  background: var(--white); border: 1px solid var(--i5-gray);
+  border-radius: var(--radius); padding: 1.4rem;
+  border-top: 3px solid var(--a2-blue);
+}
+.program-block h3 {
+  font-family: var(--font-body); font-weight: 700; font-size: .95rem;
+  color: var(--navy); letter-spacing: 0; margin-bottom: .45rem;
+}
+.program-block .tag {
+  display: inline-block; font-size: .7rem; font-weight: 700;
+  background: var(--navy); color: var(--white);
+  padding: .14rem .5rem; border-radius: var(--radius); margin-bottom: .55rem;
+  letter-spacing: .05em; text-transform: uppercase; font-family: var(--font-body);
+}
+.program-block p { font-size: .875rem; max-width: none; }
+
+/* ─── QUOTE / PULLOUT ────────────────────────────────────────── */
+.quote-block {
+  border-left: 4px solid var(--a2-blue);
+  padding: 1.1rem 1.4rem;
+  background: var(--i6-gray);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+/* Garamond italic for the pullquote the one place it carries personality */
+.quote-text {
+  font-family: var(--font-display); font-size: 1.12rem;
+  font-style: italic; line-height: 1.5; color: var(--navy);
+}
+.quote-attr { margin-top: .55rem; font-size: .8rem; color: var(--muted); font-family: var(--font-body); }
+
+/* ─── SECTION HEADS WITH RULE ────────────────────────────────── */
+.team-section-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.1rem; }
+.team-section-head h2 { flex-shrink: 0; white-space: nowrap; }
+.team-section-head::after { content: ''; flex: 1; height: 1px; background: var(--i5-gray); }
+
+/* ─── FORM ───────────────────────────────────────────────────── */
+label { display: block; font-size: .875rem; font-weight: 700; margin-bottom: .3rem; color: var(--navy); font-family: var(--font-body); }
+input[type=text], input[type=email], textarea, select {
+  width: 100%; border: 1px solid var(--j3-cool-gray);
+  border-radius: var(--radius); padding: .5rem .75rem;
+  font-family: var(--font-body); font-size: .9rem;
+  color: var(--body-text); background: var(--white); transition: border-color .12s;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none; border-color: var(--a3-cta-blue);
+  box-shadow: 0 0 0 2px rgba(0,107,233,.15);
+}
+.form-group { margin-bottom: 1.1rem; }
+.qualtrics-frame { width: 100%; min-height: 680px; border: none; border-radius: var(--radius); }
+.qualtrics-placeholder {
+  background: var(--i6-gray); border: 1px solid var(--i5-gray);
+  border-radius: var(--radius); padding: 2.5rem; text-align: center;
+}
+
+/* ─── APPLY PAGE LAYOUT ──────────────────────────────────────── */
+.apply-layout {
+  display: grid; grid-template-columns: 1fr 272px; gap: 3rem; align-items: start;
+}
+.eligibility-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.eligibility-list li { display: flex; gap: .6rem; align-items: flex-start; font-size: .875rem; font-family: var(--font-body); }
+.check { color: var(--a3-cta-blue); font-weight: 900; flex-shrink: 0; margin-top: .1rem; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.72);
+  padding: 2.5rem 0;
+  font-size: .85rem;
+  font-family: var(--font-body);
+}
+.footer-inner {
+  display: flex; flex-wrap: wrap; gap: 2rem;
+  justify-content: space-between; align-items: flex-start;
+}
+.footer-brand { font-weight: 700; font-size: .9rem; color: var(--white); margin-bottom: .3rem; }
+.footer-sub { font-size: .8rem; line-height: 1.55; }
+footer a { color: rgba(255,255,255,.68); text-decoration: none; }
+footer a:hover { color: var(--white); text-decoration: underline; }
+.footer-links { display: flex; flex-direction: column; gap: .35rem; }
+.footer-copy {
+  margin-top: 2rem; padding-top: 1.1rem;
+  border-top: 1px solid rgba(255,255,255,.14);
+  font-size: .76rem; color: rgba(255,255,255,.38); text-align: center;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .page-body { grid-template-columns: 1fr; gap: 2rem; }
+  .sidebar { position: static; }
+  .apply-layout { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .lead-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 52px; }
+  .site-nav .inner { padding: 0 1rem; }
+  .site-nav .logo { margin-right: 1rem; font-size: .82rem; }
+  .nav-links a { padding: 0 .6rem; font-size: .78rem; }
+  .page-body { padding: 1.5rem 1rem 3rem; }
+  .page-header .inner { padding: 0 1rem; }
+  .ucsf-bar .inner { padding: 0 1rem; }
+  .container { padding: 0 1rem; }
+  .footer-inner { flex-direction: column; gap: 1.5rem; }
+  footer .container { padding: 0 1rem; }
+}
+
+/* ─── ACCESSIBILITY ──────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--a3-cta-blue); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
