@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cohort Research — CCRTP · UCSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cohort-tabs {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .tab-btn {
+      padding: .45rem 1.1rem;
+      border-radius: 99px;
+      border: 1px solid var(--gray-k3);
+      background: var(--white);
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .tab-btn:hover { border-color: var(--navy); }
+    .tab-btn.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .cohort-section { display: none; }
+    .cohort-section.visible { display: block; }
+
+    /* Admin upload area (for adding new posters) */
+    .add-poster-zone {
+      border: 2px dashed var(--cool-gray);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      background: var(--white);
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+    .add-poster-zone:hover,
+    .add-poster-zone.drag-over {
+      background: var(--gray-i6);
+      border-color: var(--navy);
+    }
+    .add-poster-zone .drop-icon { font-size: 2rem; margin-bottom: .5rem; color: var(--cool-gray); }
+
+    /* Poster modal lightbox */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,32,73,.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(16px);
+      transition: transform .2s;
+    }
+    .modal-overlay.open .modal-box { transform: none; }
+    .modal-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--gray-j5);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .modal-body { padding: 1.5rem 2rem; }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--cool-gray);
+      flex-shrink: 0;
+    }
+    .modal-close:hover { color: var(--navy); }
+    .modal-poster-img {
+      width: 100%;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--gray-j5);
+    }
+    .modal-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .meta-tag {
+      font-size: .78rem;
+      padding: .2rem .6rem;
+      background: var(--gray-i6);
+      border-radius: 99px;
+      color: var(--blue-gray);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="logo" href="index.html">CCRTP · UCSF</a>
+  <a href="index.html">About</a>
+  <a href="apply.html">Apply</a>
+  <a href="posters.html">Cohort</a>
+  <a href="team.html">Team</a>
+  <a href="apply.html" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-badge">Intern Research</span>
+    <h1>Cohort Research Posters</h1>
+    <p>Every CCRTP intern presents their research at the end-of-summer symposium. Browse their work below.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section">
+  <div class="container">
+
+    <!-- Cohort year tabs -->
+    <div class="cohort-tabs">
+      <button class="tab-btn active" data-cohort="2024">2024 Cohort</button>
+      <button class="tab-btn" data-cohort="2023">2023 Cohort</button>
+      <button class="tab-btn" data-cohort="2022">2022 Cohort</button>
+      <!-- Add more years as needed -->
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         2024 COHORT
+         To add a poster: duplicate one .poster-card block.
+         Fill in name, project, mentor, lab, abstract.
+         Drop a thumbnail image and PDF via the hover overlay.
+         ═══════════════════════════════════════════════════ -->
+    <div class="cohort-section visible" id="cohort-2024">
+      <div class="poster-grid">
+
+        <!-- POSTER CARD TEMPLATE — duplicate this block for each intern -->
+        <div class="poster-card"
+             data-name="[Intern Name]"
+             data-project="[Project Title]"
+             data-mentor="[Mentor Name], [Lab Name]"
+             data-lab="Rutishauser Lab · UCSF"
+             data-abstract="[Paste the intern's abstract or project description here. Two to four sentences describing the question, methods, and key findings.]"
+             data-pdf="">
+          <div class="poster-thumb">
+            <!-- Thumbnail loads here via drag-drop or after you add an img tag -->
+            <div style="display:flex;flex-direction:column;align-items:center;pointer-events:none;">
+              <span class="placeholder-icon">🔬</span>
+              <span style="font-size:.8rem;">Hover to add poster image</span>
+            </div>
+          </div>
+          <div class="poster-info">
+            <h3>[Intern Name]</h3>
+            <div class="mentor">[Mentor Name] · [Lab]</div>
+            <div class="topic">[Project Title]</div>
+            <a href="#" class="poster-link view-poster">View poster</a>
+          </div>
+        </div>
+        <!-- END POSTER CARD -->
+
+        <!-- ADD ANOTHER POSTER (drag-drop zone) -->
+        <div class="add-poster-zone" id="addPosterZone2024">
+          <div class="drop-icon">＋</div>
+          <div style="font-size:.9rem;font-weight:600;color:var(--navy);">Add poster</div>
+          <div style="font-size:.8rem;color:var(--cool-gray);margin-top:.3rem;">Drag a poster image here, or click to upload</div>
+          <input type="file" accept="image/*,.pdf" style="display:none" id="addPosterInput2024">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2023 COHORT -->
+    <div class="cohort-section" id="cohort-2023">
+      <div class="poster-grid">
+        <div class="poster-card"
+             data-name="[Intern Name]"
+             data-project="[Project Title]"
+             data-mentor="[Mentor], [Lab]"
+             data-lab="[Lab] · UCSF"
+             data-abstract="[Abstract text here.]"
+             data-pdf="">
+          <div class="poster-thumb">
+            <div style="display:flex;flex-direction:column;align-items:center;pointer-events:none;">
+              <span class="placeholder-icon">🧬</span>
+              <span style="font-size:.8rem;">Hover to add poster image</span>
+            </div>
+          </div>
+          <div class="poster-info">
+            <h3>[Intern Name]</h3>
+            <div class="mentor">[Mentor] · [Lab]</div>
+            <div class="topic">[Project Title]</div>
+            <a href="#" class="poster-link view-poster">View poster</a>
+          </div>
+        </div>
+
+        <div class="add-poster-zone">
+          <div class="drop-icon">＋</div>
+          <div style="font-size:.9rem;font-weight:600;color:var(--navy);">Add poster</div>
+          <div style="font-size:.8rem;color:var(--cool-gray);margin-top:.3rem;">Drag a poster image here, or click to upload</div>
+          <input type="file" accept="image/*,.pdf" style="display:none">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 COHORT -->
+    <div class="cohort-section" id="cohort-2022">
+      <div class="poster-grid">
+        <div class="poster-card"
+             data-name="[Intern Name]"
+             data-project="[Project Title]"
+             data-mentor="[Mentor], [Lab]"
+             data-lab="[Lab] · UCSF"
+             data-abstract="[Abstract text here.]"
+             data-pdf="">
+          <div class="poster-thumb">
+            <div style="display:flex;flex-direction:column;align-items:center;pointer-events:none;">
+              <span class="placeholder-icon">🧫</span>
+              <span style="font-size:.8rem;">Hover to add poster image</span>
+            </div>
+          </div>
+          <div class="poster-info">
+            <h3>[Intern Name]</h3>
+            <div class="mentor">[Mentor] · [Lab]</div>
+            <div class="topic">[Project Title]</div>
+            <a href="#" class="poster-link view-poster">View poster</a>
+          </div>
+        </div>
+        <div class="add-poster-zone">
+          <div class="drop-icon">＋</div>
+          <div style="font-size:.9rem;font-weight:600;color:var(--navy);">Add poster</div>
+          <input type="file" accept="image/*,.pdf" style="display:none">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal-overlay" id="posterModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h2 id="modal-name" style="font-size:1.2rem;"></h2>
+        <div id="modal-mentor" style="font-size:.85rem;color:var(--blue-gray);margin-top:.2rem;"></div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modal-thumb-wrap"></div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <h3 id="modal-project" style="margin-bottom:.75rem;"></h3>
+      <p id="modal-abstract" style="font-size:.9rem;color:var(--blue-gray);"></p>
+      <div style="margin-top:1.5rem;">
+        <a id="modal-pdf-link" href="#" class="btn btn-primary" target="_blank" style="display:none;">Download PDF</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">CCRTP · UCSF</div>
+        <div class="footer-sub">Community College Research Training Program<br>University of California, San Francisco</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="apply.html">Apply</a>
+        <a href="posters.html">Cohort Research</a>
+        <a href="team.html">Team</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 The Regents of the University of California. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // ─── Cohort tabs ────────────────────────────────────────────
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cohort-section').forEach(s => s.classList.remove('visible'));
+      btn.classList.add('active');
+      document.getElementById('cohort-' + btn.dataset.cohort)?.classList.add('visible');
+    });
+  });
+
+  // ─── Poster modal ────────────────────────────────────────────
+  const modal   = document.getElementById('posterModal');
+  const mClose  = document.getElementById('modalClose');
+
+  document.querySelectorAll('.view-poster').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const card = link.closest('.poster-card');
+      document.getElementById('modal-name').textContent    = card.dataset.name || 'Intern Name';
+      document.getElementById('modal-mentor').textContent  = card.dataset.mentor || '';
+      document.getElementById('modal-project').textContent = card.dataset.project || '';
+      document.getElementById('modal-abstract').textContent = card.dataset.abstract || 'Abstract coming soon.';
+
+      // Meta tags
+      const metaEl = document.getElementById('modal-meta');
+      metaEl.innerHTML = '';
+      if (card.dataset.lab) { const t = document.createElement('span'); t.className='meta-tag'; t.textContent=card.dataset.lab; metaEl.appendChild(t); }
+
+      // Thumb
+      const thumbWrap = document.getElementById('modal-thumb-wrap');
+      const existingImg = card.querySelector('.poster-thumb img');
+      thumbWrap.innerHTML = '';
+      if (existingImg) {
+        const img = document.createElement('img');
+        img.src = existingImg.src;
+        img.className = 'modal-poster-img';
+        thumbWrap.appendChild(img);
+      }
+
+      // PDF
+      const pdfLink = document.getElementById('modal-pdf-link');
+      if (card.dataset.pdf) { pdfLink.href = card.dataset.pdf; pdfLink.style.display='inline-block'; }
+      else { pdfLink.style.display='none'; }
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  mClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ─── Poster hover-drop ──────────────────────────────────────
+  initPosterDrops();
+
+  // ─── Add poster zone ────────────────────────────────────────
+  document.querySelectorAll('.add-poster-zone').forEach(zone => {
+    const input = zone.querySelector('input[type=file]');
+    zone.addEventListener('click', () => input && input.click());
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      alert('To permanently add a poster, add a new .poster-card block in posters.html and place the file in assets/posters/. See code comments for instructions.');
+    });
+    input && input.addEventListener('change', () => {
+      alert('To permanently add a poster, add a new .poster-card block in posters.html and place the file in assets/posters/. See code comments for instructions.');
+    });
+  });
+</script>
+</body>
+</html>

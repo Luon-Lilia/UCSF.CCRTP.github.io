@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Apply — CCRTP · UCSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .apply-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 840px) {
+      .apply-layout { grid-template-columns: 1fr; }
+    }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--gray-j5);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+    .sidebar-card h3 { margin-bottom: 1rem; }
+    .eligibility-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .eligibility-list li {
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      font-size: .9rem;
+    }
+    .check { color: var(--navy); font-weight: 700; flex-shrink: 0; margin-top:.1rem; }
+    .faq-item {
+      border-top: 1px solid var(--gray-j5);
+      padding: 1.25rem 0;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--gray-j5); }
+    .faq-q {
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .faq-a {
+      margin-top: .75rem;
+      font-size: .9rem;
+      color: var(--blue-gray);
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-toggle { color: var(--cool-gray); flex-shrink: 0; }
+    .qualtrics-frame {
+      width: 100%;
+      min-height: 700px;
+      border: none;
+      border-radius: var(--radius);
+    }
+    .qualtrics-placeholder {
+      background: var(--white);
+      border: 1px solid var(--gray-j5);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .qualtrics-placeholder h3 { margin-bottom: .75rem; }
+    .qualtrics-placeholder p { color: var(--blue-gray); font-size: .9rem; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="logo" href="index.html">CCRTP · UCSF</a>
+  <a href="index.html">About</a>
+  <a href="apply.html">Apply</a>
+  <a href="posters.html">Cohort</a>
+  <a href="team.html">Team</a>
+  <a href="apply.html" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-badge">Summer 2025 Applications Open</span>
+    <h1>Apply to CCRTP</h1>
+    <p>Applications take about 20 minutes. Read the eligibility requirements and timeline before you start.</p>
+  </div>
+</section>
+
+<!-- MAIN APPLY SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="apply-layout">
+
+      <!-- LEFT: Application form area -->
+      <div>
+        <h2>Application</h2>
+        <p style="margin-top:.5rem;color:var(--blue-gray);margin-bottom:2rem;">Complete the form below. You will need a personal statement and an unofficial transcript. If you have a resume or CV, attach it too.</p>
+
+        <!-- Document upload drop zone -->
+        <div style="margin-bottom:2rem;">
+          <h3 style="margin-bottom:1rem;">Upload your documents</h3>
+
+          <div class="drop-zone" data-accept=".pdf,.doc,.docx">
+            <input type="file" accept=".pdf,.doc,.docx" multiple style="display:none">
+            <div class="drop-icon">📎</div>
+            <div class="drop-label"><strong>Drag and drop files here</strong></div>
+            <div class="drop-hint">Accepted: PDF, Word (.doc, .docx) — Resume, transcript, personal statement</div>
+            <div class="file-list"></div>
+          </div>
+          <p style="font-size:.8rem;color:var(--cool-gray);margin-top:.5rem;">Note: This uploader is for your own reference while you prepare. Your official application is submitted through the Qualtrics form below.</p>
+        </div>
+
+        <!-- Qualtrics embed -->
+        <h3 style="margin-bottom:1rem;">Complete the application form</h3>
+
+        <!-- 
+          ════════════════════════════════════════════════════════
+          REPLACE the placeholder div below with your Qualtrics
+          embed. From Qualtrics:
+            Distributions > Anonymous Link > Embed > copy the
+            <iframe> tag and paste it here in place of the div.
+
+          Example:
+          <iframe
+            class="qualtrics-frame"
+            src="https://ucsf.qualtrics.com/jfe/form/SV_YOURSURVEYID"
+            allowfullscreen>
+          </iframe>
+          ════════════════════════════════════════════════════════
+        -->
+        <div class="qualtrics-placeholder">
+          <h3>Qualtrics Form</h3>
+          <p>Paste your Qualtrics <code>&lt;iframe&gt;</code> embed code here.<br>
+          Or link directly: <a href="YOUR_QUALTRICS_LINK_HERE" class="btn btn-primary" style="display:inline-block;margin-top:1rem;" target="_blank">Open Application Form</a></p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <div>
+        <div class="sidebar-card">
+          <h3>Eligibility</h3>
+          <ul class="eligibility-list">
+            <li><span class="check">✓</span> Currently enrolled at a California community college</li>
+            <li><span class="check">✓</span> Completed at least one semester of biology or chemistry</li>
+            <li><span class="check">✓</span> Available for the full 8-week program (in-person, UCSF)</li>
+            <li><span class="check">✓</span> U.S. citizen, permanent resident, or DACA recipient</li>
+            <li><span class="check">✓</span> No prior research experience required</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card" style="margin-top:1.5rem;">
+          <h3>Key dates</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-date">Applications open</div>
+              <div class="tl-title">[Month, Year]</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-date">Application deadline</div>
+              <div class="tl-title">[Month, Day, Year]</div>
+              <div class="tl-desc">11:59 PM Pacific Time</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-date">Interviews</div>
+              <div class="tl-title">[Month, Year]</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-date">Decisions</div>
+              <div class="tl-title">[Month, Year]</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-date">Program start</div>
+              <div class="tl-title">[Summer start date]</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card" style="margin-top:1.5rem;">
+          <h3>Questions?</h3>
+          <p style="font-size:.88rem;color:var(--blue-gray);margin-top:.5rem;">Contact the CCRTP program coordinator:</p>
+          <a href="mailto:vickie.bowcut@ucsf.edu" style="font-size:.9rem;font-weight:600;color:var(--navy);text-decoration:none;display:block;margin-top:.5rem;">vickie.bowcut@ucsf.edu</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt">
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <div style="max-width:720px;margin-top:2rem;">
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need prior lab experience to apply? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">No. CCRTP is designed for students who are new to research. We train you from the ground up. What matters is curiosity, commitment, and a willingness to learn.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is the program paid? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Yes. Interns receive a competitive hourly stipend for the full eight weeks. We believe research should not require you to work for free.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Where is the program held? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Labs are located on UCSF campuses in the Bay Area (Mission Bay, Parnassus, and affiliated institutes). The program is in-person.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I apply if I am undocumented? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">DACA recipients are eligible to apply. Please contact us directly if you have questions about your specific situation — we are committed to working with you.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What does the program look like day-to-day? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Most of your time is spent in the lab working on your project with your mentor. There are also weekly cohort meetings, professional development workshops, and a final symposium where you present your research as a poster.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Will this help my transfer or medical school application? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Meaningfully, yes. CCRTP gives you a poster presentation, a UCSF mentor who can write you a strong letter of recommendation, and a research experience that stands out on any application.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">CCRTP · UCSF</div>
+        <div class="footer-sub">Community College Research Training Program<br>University of California, San Francisco</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="apply.html">Apply</a>
+        <a href="posters.html">Cohort Research</a>
+        <a href="team.html">Team</a>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:vickie.bowcut@ucsf.edu">Contact us</a>
+        <a href="https://www.ucsf.edu" target="_blank">UCSF.edu</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 The Regents of the University of California. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-toggle').textContent = '+';
+      });
+      if (!wasOpen) {
+        item.classList.add('open');
+        q.querySelector('.faq-toggle').textContent = '−';
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Team — CCRTP · UCSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Full-width leadership row */
+    .lead-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .lead-card {
+      background: var(--white);
+      border: 1px solid var(--gray-j5);
+      border-radius: var(--radius);
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.75rem;
+      align-items: flex-start;
+    }
+    .lead-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gray-j5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .lead-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+    .lead-photo-drop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5,32,73,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .15s;
+      font-size: .6rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      padding: .25rem;
+      border-radius: 50%;
+    }
+    .lead-card:hover .lead-photo-drop { opacity: 1; }
+    .lead-info h3 { font-size: 1.05rem; }
+    .lead-info .role { font-size: .82rem; color: var(--blue-gray); margin-top: .15rem; }
+    .lead-info .bio  { font-size: .88rem; margin-top: .6rem; color: var(--navy); }
+    .lead-info .contact-link {
+      display: inline-block;
+      margin-top: .75rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+    }
+
+    /* Section dividers */
+    .team-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .team-section-head h2 { flex-shrink: 0; }
+    .team-section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-j5);
+    }
+
+    /* Add member card */
+    .add-member-card {
+      background: var(--white);
+      border: 2px dashed var(--cool-gray);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      min-height: 240px;
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+      color: var(--cool-gray);
+      font-size: .9rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+    }
+    .add-member-card:hover {
+      background: var(--gray-i6);
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+    .add-member-card .plus { font-size: 1.75rem; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="logo" href="index.html">CCRTP · UCSF</a>
+  <a href="index.html">About</a>
+  <a href="apply.html">Apply</a>
+  <a href="posters.html">Cohort</a>
+  <a href="team.html">Team</a>
+  <a href="apply.html" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-badge">People</span>
+    <h1>The CCRTP Team</h1>
+    <p>The researchers, mentors, and coordinators who make the program work.</p>
+  </div>
+</section>
+
+<!-- PROGRAM LEADERSHIP -->
+<section class="section">
+  <div class="container">
+
+    <div class="team-section-head">
+      <h2>Program leadership</h2>
+    </div>
+
+    <div class="lead-grid">
+
+      <!-- ══════════════════════════════════════════
+           LEADERSHIP CARD — duplicate for each lead
+           Replace [brackets] with real info
+           Drag a photo onto the circle to upload
+           ══════════════════════════════════════════ -->
+      <div class="lead-card">
+        <div class="lead-photo">
+          <span>👤</span>
+          <div class="lead-photo-drop">Add photo</div>
+        </div>
+        <div class="lead-info">
+          <h3>Vickie Bowcut</h3>
+          <div class="role">CCRTP Founder &amp; Program Director</div>
+          <div class="bio">Vickie founded CCRTP to open a direct pipeline from California community colleges into UCSF's biomedical research enterprise. She connects interns to labs, funding, and career networks.</div>
+          <a href="mailto:vickie.bowcut@ucsf.edu" class="contact-link">vickie.bowcut@ucsf.edu</a>
+        </div>
+      </div>
+
+      <!-- Add more leadership cards here -->
+      <div class="lead-card">
+        <div class="lead-photo">
+          <span>👤</span>
+          <div class="lead-photo-drop">Add photo</div>
+        </div>
+        <div class="lead-info">
+          <h3>[Name]</h3>
+          <div class="role">[Title / Role]</div>
+          <div class="bio">[Short bio — 2 to 3 sentences. What is their role in the program? What is their research or professional background?]</div>
+          <a href="mailto:[email]" class="contact-link">[email]</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FACULTY MENTORS -->
+    <div class="team-section-head">
+      <h2>Faculty mentors</h2>
+    </div>
+    <p style="color:var(--blue-gray);margin-bottom:2rem;max-width:65ch;">CCRTP interns are matched with UCSF faculty running active research labs. These are some of the investigators who have hosted interns.</p>
+
+    <div class="team-grid">
+
+      <!-- ══════════════════════════════════════════
+           TEAM CARD — duplicate for each mentor
+           Hover the photo area to drag-drop a headshot
+           ══════════════════════════════════════════ -->
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>Dr. Rachel Rutishauser</h3>
+          <div class="role">Principal Investigator, Rutishauser Lab</div>
+          <div class="bio">Studies CD8+ T cell responses in HIV and SIV infection, with a focus on viral control and immune memory.</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>[Faculty Name]</h3>
+          <div class="role">[Title], [Department or Lab]</div>
+          <div class="bio">[One to two sentences on their research and connection to CCRTP.]</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>[Faculty Name]</h3>
+          <div class="role">[Title], [Department or Lab]</div>
+          <div class="bio">[One to two sentences on their research and connection to CCRTP.]</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>[Faculty Name]</h3>
+          <div class="role">[Title], [Department or Lab]</div>
+          <div class="bio">[One to two sentences on their research and connection to CCRTP.]</div>
+        </div>
+      </div>
+
+      <!-- Add member placeholder -->
+      <div class="add-member-card" onclick="alert('To add a team member permanently, duplicate a .team-card block in team.html and fill in the details.')">
+        <span class="plus">＋</span>
+        <span>Add faculty mentor</span>
+      </div>
+
+    </div>
+
+    <!-- LAB MENTORS / POSTDOCS -->
+    <div class="team-section-head" style="margin-top:4rem;">
+      <h2>Lab mentors</h2>
+    </div>
+    <p style="color:var(--blue-gray);margin-bottom:2rem;max-width:65ch;">Graduate students and postdocs who work directly with CCRTP interns day-to-day.</p>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>Gina Borgo</h3>
+          <div class="role">Research Mentor, Rutishauser Lab</div>
+          <div class="bio">Direct mentor to CCRTP interns in the Rutishauser Lab, guiding day-to-day experiments on T cell phenotyping.</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <span class="no-photo-icon">👤</span>
+          <div class="team-photo-drop">Add photo</div>
+        </div>
+        <div class="team-info">
+          <h3>[Mentor Name]</h3>
+          <div class="role">[Grad student / Postdoc], [Lab]</div>
+          <div class="bio">[What do they work on? What do they help interns learn?]</div>
+        </div>
+      </div>
+
+      <div class="add-member-card" onclick="alert('To add a lab mentor permanently, duplicate a .team-card block in team.html and fill in the details.')">
+        <span class="plus">＋</span>
+        <span>Add lab mentor</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- JOIN US -->
+<section style="background:var(--navy);padding:4rem 0;">
+  <div class="container" style="text-align:center;">
+    <h2 style="color:var(--white);">Interested in hosting an intern?</h2>
+    <p style="color:var(--cool-gray);margin:.75rem auto 0;text-align:center;">UCSF labs across all departments are welcome to participate. Contact us to discuss hosting a CCRTP intern in your lab.</p>
+    <a href="mailto:vickie.bowcut@ucsf.edu" class="btn btn-light" style="margin-top:2rem;">Get in touch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">CCRTP · UCSF</div>
+        <div class="footer-sub">Community College Research Training Program<br>University of California, San Francisco</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="apply.html">Apply</a>
+        <a href="posters.html">Cohort Research</a>
+        <a href="team.html">Team</a>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:vickie.bowcut@ucsf.edu">Contact us</a>
+        <a href="https://www.ucsf.edu" target="_blank">UCSF.edu</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 The Regents of the University of California. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Wire up leadership card photo drops (same logic as team cards)
+  document.querySelectorAll('.lead-card').forEach(card => {
+    const photoEl = card.querySelector('.lead-photo');
+    const dropEl  = card.querySelector('.lead-photo-drop');
+    if (!photoEl || !dropEl) return;
+
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.display = 'none';
+    card.appendChild(input);
+
+    dropEl.addEventListener('click', () => input.click());
+    input.addEventListener('change', () => {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        let img = photoEl.querySelector('img');
+        if (!img) { img = document.createElement('img'); img.alt = 'Photo'; photoEl.prepend(img); }
+        img.src = e.target.result;
+        const icon = photoEl.querySelector('span');
+        if (icon) icon.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
+</body>
+</html>
